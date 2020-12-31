@@ -1,0 +1,38 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    long long n,l=0,r=0;
+    cin>>n;
+    vector<long> v1,v2;
+    
+    for(int i=n;i>=1;i--)
+    {
+        if(l<r)
+        {
+            v1.push_back(i);
+            l+=i;
+        }
+        else{
+            v2.push_back(i);
+            r+=i;
+        }
+    }
+    if(l!=r)
+    {
+        cout<<"NO"<<endl;
+        return 0;
+    }
+    cout<<"YES"<<endl;
+    cout<<v1.size()<<endl;
+    for(int i=v1.size()-1;i>=0;i--)
+        cout<<v1[i]<<" ";
+    cout<<endl;    
+   cout<<v2.size()<<endl;
+    for(int i=v2.size()-1;i>=0;i--)
+        cout<<v2[i]<<" ";
+    
+   return 0;
+}

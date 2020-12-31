@@ -1,0 +1,28 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{//a-2x-1y=b-2y-1x
+//a=2x+y b=2y+x a-2b=-3y (2b-a)/3=y (2a-b)/3=x
+    long n;
+    cin>>n;
+    while(n--){
+   long long a,b;
+   cin>>a>>b;
+   if(a<b)swap(a,b);
+    if(a>2*b){
+        cout<<"NO\n";
+}   else{
+    a%=3,b%=3;
+    if(a<b)
+    swap(a,b);
+    
+    if((a==2 && b==1) || (a==b && b==0)){
+        cout<<"YES\n";
+    }else{
+        cout<<"NO\n";
+    }
+}
+    }
+   
