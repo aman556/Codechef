@@ -1,0 +1,21 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    long g,x,m=0,j=0;
+    cin>>g;
+    map<long,long> mp;
+    
+    for(int i=1;i<=g;i++){
+        cin>>x;
+        if(mp.find(x)!=mp.end()){
+            j=max(mp[x],j);
+        }
+        mp[x]=i;
+        m=max(i-j,m);
+    }
+    cout<<m;
+   return 0;
+}

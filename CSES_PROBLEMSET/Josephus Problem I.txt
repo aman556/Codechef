@@ -1,0 +1,22 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    long x,p,n,m=0;
+    cin>>n;
+    queue<long> q;
+    for(long i=1;i<=n;i++)
+        q.push(i);
+    while(q.size()>1){
+        long p=q.front();
+        q.pop();
+        q.push(p);
+        cout<<q.front()<<" ";
+        q.pop();
+    }
+        cout<<q.front()<<" ";
+ 
+   return 0;
+}

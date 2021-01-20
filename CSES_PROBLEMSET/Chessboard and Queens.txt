@@ -1,0 +1,86 @@
+#include <iostream>
+ 
+using namespace std;
+int c=0;
+ 
+int check(string s[],int i,int j)
+{
+    for(int k=0;k<8;k++)
+        if(s[i][k]=='q'||s[k][j]=='q')
+            return 0;
+    
+    int j1=j,i1=i;
+    while(i1>=0&&j1>=0){
+        if(s[i1][j1]=='q')
+            return 0;
+    
+        i1--;j1--;
+    }
+    j1=j;
+    i1=i;
+    
+    while(i1<8&&j1<8)
+    {
+        if(s[i1][j1]=='q')
+            return 0;
+    
+        i1++;j1++;
+    }
+    
+    j1=j;
+    i1=i;
+    
+    while(i1>=0&&j1<8)
+    {
+        if(s[i1][j1]=='q')
+            return 0;
+    
+        i1--;
+        j1++;
+    }
+    
+    j1=j;
+    i1=i;
+    
+    while(i1<8&&j1>=0)
+    {
+        if(s[i1][j1]=='q')
+            return 0;
+    
+        i1++;
+        j1--;
+    }
+    
+    return 1;
+    
+}
+ 
+void eightqueen(string s[],int n){
+    if(n==8){
+        c++;
+        return;
+    }
+        
+    for(int i=0;i<8;i++)
+    {
+        if(s[i][n]!='*'&&s[i][n]!='q'&&check(s,i,n))
+        {
+            s[i][n]='q';
+            eightqueen(s,n+1);
+            s[i][n]='.';
+        }
+    }
+}
+ 
+int main()
+{
+   string s[8];
+   for(int i=0;i<8;i++)
+        for(int j=0;j<8;j++)
+            cin>>s[i][j];
+    c=0;    
+        eightqueen(s,0);
+    cout<<c;
+   
+   return 0;
+}
