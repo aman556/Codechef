@@ -1,0 +1,36 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+int main()
+{
+   long long n,m,q,x,y,w;
+   cin>>n>>m>>q;
+   long long dis[n+1][n+1];
+   for(int i=1;i<=n;i++)
+        for(int j=1;j<=n;j++){
+            dis[i][j]=100000000000001;
+            if(i==j)
+                dis[i][j]=0;
+        }
+   for(int i=0;i<m;i++){
+       cin>>x>>y>>w;
+       dis[x][y]=min(w,dis[x][y]);
+       dis[y][x]=min(w,dis[y][x]);
+   }
+   
+   for(int k=1;k<=n;k++){
+       for(int i=1;i<=n;i++){
+           for(int j=1;j<=n;j++){
+               dis[i][j]=min(dis[i][j],min(dis[j][i],dis[i][k]+dis[k][j]));
+           }
+       }
+   }
+   while(q--){
+       cin>>x>>y;
+       if(dis[x][y]!=100000000000001)
+       cout<<dis[x][y]<<endl;
+       else
+       cout<<"-1"<<endl;
+   }
+   return 0;

@@ -1,0 +1,31 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+ const int n=1e8;
+    vector<char> seive(n+1,true);
+   vector<int> v;
+   
+int main()
+{
+    
+   
+    seive[0]=seive[1]=false;
+    
+    for(int i=2;i*i<=n;i++){
+       if(seive[i]){
+       for(int j=i*i;j<=n;j=j+i)
+            seive[j]=false;
+       }
+   }
+   
+   for(int i=2;i<=n;i++)
+        if(seive[i])
+            v.push_back(i);
+    
+     for(int i=1;i<v.size();i=i+100){
+        cout<<v[i-1]<<endl;
+        
+    }
+   
+   return 0;
+}

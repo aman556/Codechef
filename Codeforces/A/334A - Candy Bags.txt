@@ -1,0 +1,16 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+int main()
+{
+  int n;
+  cin>>n;
+  int a=1,b=n*n;
+   while(a<b){
+       cout<<a<<" "<<b<<endl;
+       a++;
+       b--;
+   }
+   return 0;
+}

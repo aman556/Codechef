@@ -1,0 +1,35 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+long long int a[101];
+long long dp[5001][5001];
+long long int n,s=0;
+long long dpp(long i,long j,long f){
+    if(i>j || j<0 || i>=n)
+        return 0;
+        
+    if(dp[i][j]!=0)
+        return dp[i][j];
+    
+    long long int c1=0,c2=0;
+        c1=a[i]+min(dpp(i+2,j,1-f),dpp(i+1,j-1,1-f));
+        c2=a[j]+min(dpp(i+1,j-1,1-f),dpp(i,j-2,1-f));
+    
+    
+    return dp[i][j]=max(c1,c2);
+    
+}
+int main()
+{
+   
+   cin>>n;
+  
+   
+   for(int i=0;i<n;i++){
+    cin>>a[i];
+    
+   }
+   long i=0,j=n-1,f=0,m=0;
+   cout<<dpp(i,j,f);
+   return 0;
+}

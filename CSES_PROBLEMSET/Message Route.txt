@@ -1,0 +1,52 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+int n,m;
+int par[100001],vis[100001],x,y,p;
+vector<vector<int>> v(100001);
+ 
+int main()
+{
+   cin>>n>>m;
+   for(int i=0;i<m;i++)
+    {
+        cin>>x>>y;
+        v[x].push_back(y);
+        v[y].push_back(x);
+    }
+    queue<int> q;
+    q.push(1);
+    par[1]=-1;
+    vis[1]=1;
+    while(!q.empty()){
+         p=q.front();
+         q.pop();
+        if(p==n)
+            break;
+        for(int i=0;i<v[p].size();i++)
+        {
+            if(vis[v[p][i]]==0){
+                q.push(v[p][i]);
+                vis[v[p][i]]=1;
+                par[v[p][i]]=p;
+            }
+        }
+    }
+    if(par[n]){
+    stack<int> st;
+    st.push(n);
+    p=par[n];
+    while(p!=-1){
+        st.push(p);
+        p=par[p];
+    }
+    cout<<st.size()<<endl;
+    while(!st.empty()){
+        cout<<st.top()<<" ";
+        st.pop();
+    }
+    }
+    else
+        cout<<"IMPOSSIBLE";
+   return 0;
+}

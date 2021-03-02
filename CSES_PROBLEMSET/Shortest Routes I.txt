@@ -1,0 +1,52 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+vector<vector<pair<long long,long long>>> v(100001);
+long long n,m,x,y,w;
+const long long nax = 1e5+5;
+const long long inf = 1e15;
+vector<long long> dist(nax , inf ) , vis(nax, 0);
+void dijkastra(){
+    //vis[i]=1;
+    dist[1]=0;
+    priority_queue< pair< long long,long long >, vector<pair< long long,long long >> , greater<pair< long long,long long > >> q;
+    q.push({0,1});
+    
+    while(!q.empty()){
+        pair<long long,long long> p=q.top();
+        q.pop();
+        
+        if(vis[p.second])
+            continue;
+            
+        vis[p.second]=1;
+        for(long long j=0;j<v[p.second].size();j++){
+ 
+            if(!vis[v[p.second][j].first]&&dist[v[p.second][j].first]>dist[p.second]+v[p.second][j].second){
+        
+            dist[v[p.second][j].first]=dist[p.second]+v[p.second][j].second;
+            q.push({dist[v[p.second][j].first],v[p.second][j].first});
+        
+            }
+        }
+        
+    }
+}
+ 
+int main()
+{
+    cin>>n>>m;
+    for(long long i=0;i<m;i++)
+    {
+        cin>>x>>y>>w;
+        v[x].push_back({y,w});
+        
+    }
+    
+  
+            dijkastra();
+            
+    for(long long i=1;i<=n;i++)
+        cout<<dist[i]<<" ";
+   return 0;
+}
